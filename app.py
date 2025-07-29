@@ -1,22 +1,12 @@
-from flask import Flask, render_template, request
-import joblib
-import re
+import os
+from flask import Flask
 
 app = Flask(__name__)
 
-# Simulated model (for showcase purposes)
-def is_phishing(url):
-    return "phish" in url.lower()
-
-@app.route('/')
+@app.route("/")
 def home():
-    return render_template('index.html')
+    return "Hello from PhishShieldAI!"
 
-@app.route('/check', methods=['POST'])
-def check():
-    url = request.form['url']
-    result = "Phishing Detected!" if is_phishing(url) else "Looks Safe ✅"
-    return render_template('index.html', url=url, result=result)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
