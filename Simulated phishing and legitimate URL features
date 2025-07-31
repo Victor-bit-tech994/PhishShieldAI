@@ -1,0 +1,13 @@
+X = [
+    [75, 1, 1, 1, 5, 10, 2, 1],  # phishing
+    [25, 0, 1, 1, 2, 4, 0, 0],   # legit
+    [65, 2, 0, 1, 4, 9, 3, 2],  # phishing
+    [28, 0, 1, 0, 2, 3, 0, 0],   # legit
+]
+y = [1, 0, 1, 0]
+
+clf = RandomForestClassifier()
+clf.fit(X, y)
+
+joblib.dump(clf, 'model.pkl')
+print("✅ Model trained and saved as model.pkl")
